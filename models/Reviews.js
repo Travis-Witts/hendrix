@@ -16,18 +16,20 @@ Reviews.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        userId: {
+        user_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
               model: 'user',
-              key: 'userId',
+              key: 'user_id',
             },
         },
-        productId: {
+        product_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
               model: 'product',
-              key: 'productId',
+              key: 'product_id',
             },
         },
     },
