@@ -24,12 +24,12 @@ Reviews.init(
               key: 'user_id',
             },
         },
-        product_id: {
+        business_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-              model: 'product',
-              key: 'product_id',
+              model: 'business',
+              key: 'business_id',
             },
         },
     },

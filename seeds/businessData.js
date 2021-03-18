@@ -1,23 +1,26 @@
 const { Business } = require('../models');
 
-const businessData = [
+const productData = [
     {
-        name: 'rentingswag',
-        email: 'swag@email.com',
-        password: 'password123',
+        name: 'Rent-A-Swag',
+        description: 'A high quality rental store for your growing teenagers',
+        imageUrl: " ",
+        owner_id: 1
     },
     {
-        name: 'aziz',
-        email: 'aziz@email.com',
-        password: 'password123',
+        name: 'Entertainment 720',
+        description: 'The entertainment buisness here to cover all your entertaining needs',
+        imageUrl: " ",
+        owner_id: 2,
     },
     {
-        name: 'burger',
-        email: 'burger@email.com',
-        password: 'password123',
-    },
+        name: 'Good Burger',
+        description: 'Welcome to Good Burger, home of the good burger, can I take your order?',
+        imageUrl: " ",
+        owner_id: 3,
+    }
 ];
 
-const seedUser = () => Business.bulkCreate(businessData);
+const seedProduct = () => Business.bulkCreate(productData);
 
-module.exports = seedUser;
+module.exports = seedProduct;

@@ -1,5 +1,5 @@
-const Business = require('./Business')
-const Product = require('./Product');
+const Owner = require('./Owner')
+const Business = require('./Business');
 const Reviews = require('./Reviews');
 const User = require('./User');
 
@@ -8,27 +8,27 @@ User.hasMany(Reviews, {
     onDelete: 'CASCADE'
 });
 
-Product.hasMany(Reviews, {
-    foreignKey: 'product_id',
-    onDelete: 'CASCADE'
-});
-
-Business.hasOne(Product,{
+Business.hasMany(Reviews, {
     foreignKey: 'business_id',
     onDelete: 'CASCADE'
 });
 
-Product.belongsTo(Business, {
-    foreignKey: 'business_id'
+Owner.hasMany(Business,{
+    foreignKey: 'owner_id',
+    onDelete: 'CASCADE'
+});
+
+Business.belongsTo(Owner, {
+    foreignKey: 'owner_id'
 });
 
 Reviews.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-Product.belongsTo(User, {
-    foreignKey: 'product_id'
+Reviews.belongsTo(Business, {
+    foreignKey: 'business_id'
 });
 
 
-module.exports = { User, Product, Reviews, Business };
+module.exports = { User, Business, Reviews, Owner };

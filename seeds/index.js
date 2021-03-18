@@ -1,17 +1,17 @@
 const sequelize = require('../config/connection');
 const seedUser = require('./userData');
-const seedProduct = require('./productData');
+const seedBusiness = require('./businessData');
 const seedReview = require('./reviewData');
-const seedBusiness = require('./businessData')
+const seedOwner = require('./ownerData')
 
 const seedAll = async () => {
     await sequelize.sync({ force: true });
 
     await seedUser();
 
-    await seedBusiness();
+    await seedOwner();
 
-    await seedProduct();
+    await seedBusiness();
 
     await seedReview();
 
