@@ -2,11 +2,11 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class Product extends Model {}
+class Owner extends Model {}
 
-Product.init(
+Owner.init(
   {
-    product_id: {
+    owner_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -15,35 +15,36 @@ Product.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-      validate: {
-          len: [1, 50],
-      },
     },
-    description: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
     },
-    imageUrl: {
+    password: {
       type: DataTypes.STRING,
-      allowNull: true,
-    },
-    business_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'business',
-          key: 'business_id',
-        },
+      allowNull: false,
+      validate: {
+        len: [8, 16],
+      },
     },
   },
   {
+    hooks: {
+      beforeCreate: async (newUserData) => {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      },
+    },
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'product',
+    modelName: 'owner',
   }
 );
 
-module.exports = Product;
+module.exports = Owner;

@@ -15,30 +15,29 @@ Business.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
       unique: true,
       validate: {
-        isEmail: true,
+          len: [1, 50],
       },
     },
-    password: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [8, 16],
-      },
+    },
+    imageUrl: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    owner_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'owner',
+          key: 'owner_id',
+        },
     },
   },
   {
-    hooks: {
-      beforeCreate: async (newUserData) => {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        return newUserData;
-      },
-    },
     sequelize,
     timestamps: false,
     freezeTableName: true,
