@@ -18,6 +18,6 @@ const productData = [
     }
 ];
 
-const seedProduct = () => Review.bulkCreate(reviewData);
+const seedProduct = () => Product.bulkCreate(productData);
 
 module.exports = seedProduct;
