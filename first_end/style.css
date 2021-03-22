@@ -1,3 +1,16 @@
+#navbar_title {
+  font-size: large;
+}
+#login{
+float: right;
+ 
+}
+
+#signup{
+  float: right; 
+   
+  }
+
 #reviewer_background {
     top: 0;
     left: 0;
@@ -31,7 +44,7 @@ h1 {
   }
 
   * {box-sizing: border-box}
-/* Add padding to containers */
+Add padding to containers
 .container {
   padding: 16px;
 }
@@ -88,6 +101,7 @@ body {
 .heading {
   font-size: 25px;
   margin-right: 25px;
+ 
 }
 .fa {
   font-size: 25px;
@@ -179,32 +193,36 @@ body {
     text-align: center;
     color: white;
   }
-  
-  /* Individual bars */
-  .bar-5 {width: 60%; height: 18px; background-color: #4CAF50;}
-  .bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
-  .bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
-  .bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
-  .bar-1 {width: 15%; height: 18px; background-color: #f44336;}
-  
-  /* Responsive layout - make the columns stack on top of each other instead of next to each other */
-  @media (max-width: 400px) {
-    .side, .middle {
-      width: 100%;
-    }
-    /* Hide the right column on small screens */
-    .right {
-      display: none;
-    }
+
+  .star_rating input{
+  display: none;  
   }
 
-/* Individual bars */
-.bar-5 {width: 60%; height: 18px; background-color: #4CAF50;}
-.bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
-.bar-3 {width: 10%; height: 18px; background-color: #00BCD4;}
-.bar-2 {width: 4%; height: 18px; background-color: #FF9800;}
-.bar-1 {width: 15%; height: 18px; background-color: #F44336;}
-/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+  .star_rating label{
+    font-size: 20px;
+    color:#444;
+    padding: 10px;
+    float:right; 
+    transition: all 0.2s ease;
+    
+    }
+
+    input:not(:checked) ~ label:hover,
+    input:not(:checked) ~ label:hover ~ label{
+      color:#fd4
+    }
+    input:checked ~ label{
+      color: #fd4;
+    }
+
+
+#chat{
+  position: sticky;
+  float: right;
+  margin-right: 100%;
+  
+}
+
 @media (max-width: 400px) {
   .side, .middle {
     width: 100%;
