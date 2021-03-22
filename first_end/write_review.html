@@ -21,75 +21,29 @@
               <input type="text" class="form-control" id="reviewTitle" placeholder="title">
             </div >
             
-<div id="rating">
+<div class="star_rating">
 <span class="heading">User Rating</span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-
-<!-- <hr style="border:3px solid #f1f1f1"> -->
-
-<div class="row">
-  <div class="side">
-    <div>5 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-5"></div>
-    </div>
-  </div>
-  <div class="side right">
-    <div>150</div>
-  </div>
-  <div class="side">
-    <div>4 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-4"></div>
-    </div>
-  </div>
-  <div class="side right">
-    <div>63</div>
-  </div>
-  <div class="side">
-    <div>3 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-3"></div>
-    </div>
-  </div>
-  <div class="side right">
-    <div>15</div>
-  </div>
-  <div class="side">
-    <div>2 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-2"></div>
-    </div>
-  </div>
-  <div class="side right">
-    <div>6</div>
-  </div>
-  <div class="side">
-    <div>1 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-1"></div>
-    </div>
-  </div>
-  <div class="side right">
-    <div>20</div>
-  </div>
+<span>
+    <input type="radio" name="rate" id="5star" ></input>
+    <label for="5star" class="fas fa-star"></label>
+</span>
+<span>
+    <input type="radio" name="rate" id="4star" ></input>
+    <label for="4star" class="fas fa-star"></label>
+</span>
+<span>
+    <input type="radio" name="rate" id="3star" ></input>
+    <label for="3star" class="fas fa-star"></label>
+</span>
+<span>
+    <input type="radio" name="rate" id="2star" ></input>
+    <label for="2star" class="fas fa-star"></label>
+</span>
+<span>
+    <input type="radio" name="rate" id="1star" ></input>
+    <label for="1star" class="fas fa-star"></label>
+</span>
 </div>
-</div>
-            
             <div class="form-group" style="margin-top: 5%;">
               <h3 for="exampleFormControlTextarea1">Comment</h3>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -105,25 +59,10 @@
               <a href="#" class="card-link">reply</a>
               <a href="#" class="card-link">delete</a>
             </div>
-      
+      <a type="submit" href="./search.html">Submit</a>
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function(){
-    // Check Radio-box
-    $("#rating").attr("checked", false);
-    $('.rating input').click(function () {
-        $(".rating span").removeClass('checked');
-        $(this).parent().addClass('checked');
-    });
-    $('input:radio').change(
-      function(){
-        var userRating = this.value;
-        alert(userRating);
-    }); 
-});
-    </script>
+    
   </body>
 </html>
