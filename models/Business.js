@@ -28,12 +28,12 @@ Business.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    owner_id: {
+    user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'owner',
-          key: 'owner_id',
+          model: 'user',
+          key: 'user_id',
         },
     },
   },
