@@ -4,10 +4,10 @@
 <div class="card" style="width: 18rem;">
     <div class="card-body">
         <h5 class="card-title" id="{{business.business_id}}">{{business.name}}</h5>
-        <div>Rating: {{}}</div>
-        <div >{{business.imageUrl}}</div>
-       <p class="card-title" id="listDescription">{{business.description}}</p>
-       <button>VIEW</button>
-       {{/each}}
+        <div>Rating: {{star_rating business.totalRating}}</div>
+        <div>{{business.imageUrl}}</div>
+        <p class="card-title" id="listDescription">{{business.description}}</p>
+        <button>VIEW</button>
     </div>
 </div>
+{{/each}}
