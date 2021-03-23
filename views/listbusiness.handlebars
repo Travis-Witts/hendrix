@@ -1,32 +1,13 @@
 <h1 style="text-align: center;">Hendrix</h1>
 
-
+{{#each businesses as |business|}}
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-        <h5 class="card-title" id="businessName">Business Name</h5>
-        <div class="star_rating">
-            <span class="heading">User Rating</span>
-            <span>
-                <input type="radio" name="rate" id="5star"></input>
-                <label for="5star" class="fas fa-star"></label>
-            </span>
-            <span>
-                <input type="radio" name="rate" id="4star"></input>
-                <label for="4star" class="fas fa-star"></label>
-            </span>
-            <span>
-                <input type="radio" name="rate" id="3star"></input>
-                <label for="3star" class="fas fa-star"></label>
-            </span>
-            <span>
-                <input type="radio" name="rate" id="2star"></input>
-                <label for="2star" class="fas fa-star"></label>
-            </span>
-            <span>
-                <input type="radio" name="rate" id="1star"></input>
-                <label for="1star" class="fas fa-star"></label>
-            </span>
-        </div>
-       <p class="card-title" id="listDescription">Description....</p>
+        <h5 class="card-title" id="{{business.business_id}}">{{business.name}}</h5>
+        <div>Rating: {{}}</div>
+        <div >{{business.imageUrl}}</div>
+       <p class="card-title" id="listDescription">{{business.description}}</p>
+       <button>VIEW</button>
+       {{/each}}
     </div>
 </div>
