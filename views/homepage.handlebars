@@ -1,0 +1,22 @@
+<h1 style="text-align: center;">Hendrix</h1>
+<div class="container" style="margin-top: 5%;text-align: center;">
+    <h1 id="business_name">Search</h1>
+
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Please enter the business you wish to search for"
+            aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="searchBusiness">Search</button>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 5%;">
+        <h3>Recommended Business</h3>
+        <ul class="list-group">
+            {{#each randomArr as |business| }}
+            <li class="list-group-item" id="{{business.business_id}}" type="button">{{business.name}}</li>
+            {{/each}}
+        </ul>
+    </div>
+
+</div>
