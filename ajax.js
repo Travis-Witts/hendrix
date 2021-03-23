@@ -1,4 +1,4 @@
-// fetch('./api/some.json')
+// fetch('/api/users')
 //   .then(
 //     function(response) {
 //       if (response.status !== 200) {
@@ -17,30 +17,28 @@
 //   });
 
 $(document).ready(function () {
-    fetchTypeAheadResult();
+    fetchUsers();
 });
 
-function fetchTypeAheadResult() {
-    $('#searchBusiness').typeahead({
-        source: function (request, response) {
-          var formData = {
-            'product' : $('#searchBusiness').val()
-          }
-          // var formData = $('form').serialize();
-          $.ajax({
-                url: "/search",
-                dataType: "json",
-                type: "POST",
-                data: formData,
-                contentType: "application/json; charset=utf-8",
-                success: function (result) {
-                    var items = [];
-                    response($.map(result, function (item) {                            
-                        items.push(item.name);
-                    }))
-                    response(items);
-                }
-            });
+function fetchUsers() {
+    $('#searchBusiness').on("change", function (request, response) {
+        var formData = {
+            'product': $('#searchBusiness').val()
         }
+        // var formData = $('form').serialize();
+        $.ajax({
+            url: "/api/users",
+            dataType: "json",
+            type: "POST",
+            data: formData,
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                var items = [];
+                response($.map(result, function (item) {
+                    items.push(item.name);
+                }))
+                response(items);
+            }
         });
-    };
+    }
+}
