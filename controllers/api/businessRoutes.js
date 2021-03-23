@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Business, Reviews, User } = require('../../models');
 const sequelize = require('sequelize')
 
+const { Op } = sequelize;
 const withAuth = require('../../utils/auth');
 
 
@@ -14,7 +15,10 @@ router.get('/search/:term', async (req, res) => {
         const dbBusinessData = await Business.findAll({
             limit: 10,
             where: {
-                name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.params.term + '%')
+                name: {
+                    [Op.like]: "%" + req.params.term + "%"
+                }
+                // name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.params.term + '%')
             },
             include: [
                 {
@@ -37,8 +41,11 @@ router.get('/search/:term', async (req, res) => {
         })
 
         console.log(businesses)
-        res.json(businesses)
-
+        res.render('listbusiness', {
+            businesses,
+            loggedIn: req.session.loggedIn,
+        });
+        // res.send();
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
