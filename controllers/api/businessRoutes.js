@@ -1,20 +1,79 @@
-router.get('/search', async (req, res) => {
-    if (!req.session.loggedIn) {
-        res.redirect('/login')
-        return
-    }
-    const dbProductData = await Business.findAll({
-        include: [
-            {
-                model: Reviews,
-                required: true,
-                attributes: ['review', 'user_id', 'rating', 'business_id'],
-                include: [{
-                    model: User,
-                    required: true,
-                    attributes: ['name']
-                }],
+const router = require('express').Router();
+const { Business, Reviews, User } = require('../../models');
+const sequelize = require('sequelize')
+
+const withAuth = require('../../utils/auth');
+
+
+router.get('/search/:term', async (req, res) => {
+    try {
+        // if (!req.session.loggedIn) {
+        //     res.redirect('/login')
+        //     return
+        // }
+        const dbBusinessData = await Business.findAll({
+            limit: 10,
+            where: {
+                name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.params.term + '%')
             },
-        ],
-    });
+            include: [
+                {
+                    model: Reviews,
+                    required: true,
+                    attributes: ['rating'],
+                },
+            ],
+        });
+        let businesses = dbBusinessData.map((business) => business.get({ plain: true }));
+
+        businesses.forEach((business) => {
+            let total = 0;
+            let reviews = business.reviews
+            for (i = 0; i < reviews.length; i++) {
+                total += reviews[i].rating
+            }
+            let totalRating = Math.round(total)
+            business.totalRating = totalRating / reviews.length
+        })
+
+        console.log(businesses)
+        res.json(businesses)
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
 })
+
+router.get('/:id', async (req, res) => {
+    try {
+        // if (!req.session.loggedIn) {
+        //     res.redirect('/login')
+        //     return
+        // }
+        const dbBusinessData = await Business.findOne({
+            where: {
+                business_id: req.params.id
+            },
+            include: [
+                {
+                    model: Reviews,
+                    required: true,
+                    attributes: ['review', 'user_id', 'rating', 'business_id'],
+                    include: ['reviewer'],
+                },
+                'owner',
+            ],
+        });
+
+        let oneBusiness = dbBusinessData.get({ plain: true });
+
+        res.render()
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+})
+
+module.exports = router;

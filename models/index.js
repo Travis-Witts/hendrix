@@ -18,11 +18,13 @@ User.hasMany(Business,{
 });
 
 Business.belongsTo(User, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
+    as: 'owner'
 });
 
 Reviews.belongsTo(User, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
+    as: 'reviewer'
 });
 
 Reviews.belongsTo(Business, {
