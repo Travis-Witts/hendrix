@@ -29,6 +29,7 @@ router.get('/', async (req, res) => {
         console.log(randomArr)
 
         res.render('homepage', {
+
             randomArr,
             loggedIn: req.session.loggedIn,
         });
@@ -38,8 +39,10 @@ router.get('/', async (req, res) => {
     }
 });
 
+
 router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
+    // If a session exists, redirect the request to the homepage
+    if (req.session.loggedIn) {
         res.redirect('/');
         return;
     }
@@ -52,7 +55,6 @@ router.get('/register', (req, res) => {
         res.redirect('/');
         return;
     }
-
     res.render('register');
 });
 
