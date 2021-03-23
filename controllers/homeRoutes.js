@@ -17,20 +17,31 @@ router.get('/', async (req, res) => {
         const products = dbProductData.map((product) =>
             product.get({ plain: true })
         );
-        res.json(products)
-        console.log(products)
+        // res.json(products)
+        // console.log(products)
         // for (i = 0; i < products.length; i++) {
         //     products[i].username = await (products) => {}
         // }
 
-        // res.render('homepage', {
-        //     products,
-        //     loggedIn: req.session.loggedIn,
-        // });
+        res.render('homepage', {
+            products,
+            loggedIn: req.session.loggedIn,
+        });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
     }
+});
+
+
+router.get('/login', (req, res) => {
+    // If a session exists, redirect the request to the homepage
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('login');
 });
 
 module.exports = router;
