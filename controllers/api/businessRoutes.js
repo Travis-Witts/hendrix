@@ -66,9 +66,12 @@ router.get('/:id', async (req, res) => {
             ],
         });
 
-        let oneBusiness = dbBusinessData.get({ plain: true });
+        let business = dbBusinessData.get({ plain: true });
 
-        res.render()
+        res.render('viewBusiness', {
+            business,
+            loggedIn: req.session.loggedIn,
+        });
 
     } catch (err) {
         console.log(err);
