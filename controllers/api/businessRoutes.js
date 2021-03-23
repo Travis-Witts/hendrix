@@ -23,7 +23,7 @@ router.get('/search/:term', async (req, res) => {
             ],
         });
         let businesses = dbBusinessData.map((business) => business.get({ plain: true }));
-
+        console.log(businesses)
         businesses.forEach((business) => {
             let totalRating = 0;
             
