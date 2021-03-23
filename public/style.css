@@ -1,43 +1,22 @@
-body{
-  font-family: 'Ranchers', cursive;
-}
-#navbar_title {
-  font-size: large;
-}
+
+
+
+
 #login{
 float: right;
- 
 }
 
 #signup{
-  float: right; 
-   
+  float: right;   
   }
 
-#reviewer_background {
-    top: 0;
-    left: 0;
-    padding: 40px;
-    margin: 0;
-    text-align: center;
-    background-color: powderblue;
-}
 
-#business_background {
-    top: 0;
-    left: 0;
-    padding: 40px;
-    margin: 0;
-    text-align: center;
-    background-color: pink;
-}
 
 h1 {
     margin-bottom: 10%;
     margin-top: 10%;
     font-size: 36px;
     line-height: 45px;
-    
   }
 
   p {
@@ -47,10 +26,7 @@ h1 {
   }
 
   * {box-sizing: border-box}
-Add padding to containers
-.container {
-  padding: 16px;
-}
+
 /* Full-width input fields */
 input[type=text], input[type=password] {
   width: 100%;
