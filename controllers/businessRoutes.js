@@ -63,7 +63,7 @@ router.get('/search/:term', async (req, res) => {
         })
         req.session.user_id = 100
         console.log(businesses)
-        res.render('listbusiness', {
+        res.render('searchresult', {
             businesses,
             loggedIn: req.session.loggedIn,
         });
