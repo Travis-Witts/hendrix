@@ -21,7 +21,6 @@ router.get('/', async (req, res) => {
         const randomArr = []
 
         for (i = 0; i < ArrLength ; i++) {
-                var unique = true;
                 index = Math.floor(Math.random() * products.length);
                 randomArr.push(products[index])
                 products = products.filter((val, i) => i!= index)
@@ -29,7 +28,6 @@ router.get('/', async (req, res) => {
         console.log(randomArr)
 
         res.render('homepage', {
-
             randomArr,
             loggedIn: req.session.loggedIn,
         });
@@ -39,10 +37,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-
 router.get('/login', (req, res) => {
-    // If a session exists, redirect the request to the homepage
-    if (req.session.loggedIn) {
+    if (req.session.logged_in) {
         res.redirect('/');
         return;
     }
@@ -55,6 +51,7 @@ router.get('/register', (req, res) => {
         res.redirect('/');
         return;
     }
+
     res.render('register');
 });
 
