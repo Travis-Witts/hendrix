@@ -21,6 +21,7 @@ router.get('/manageBusiness/:id', async (req, res) => {
 
             businesses,
             loggedIn: req.session.loggedIn,
+
         });
     } catch (err) {
         console.log(err);

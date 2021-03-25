@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const { Business, Reviews, User } = require('../../models');
+const { Business, Reviews, User } = require('../models');
 const sequelize = require('sequelize')
 
-const withAuth = require('../../utils/auth');
+const withAuth = require('../utils/auth');
 
 
 router.get('/search/:term', async (req, res) => {
@@ -35,14 +35,13 @@ router.get('/search/:term', async (req, res) => {
             let totalRating = Math.round(total)
             business.totalRating = totalRating / reviews.length
         })
-
-        // console.log(businesses)
-        // res.json(businesses)
+        console.log(req.session)
+        console.log(businesses)
         res.render('listbusiness', {
             businesses,
             loggedIn: req.session.loggedIn,
-        })
-
+        });
+        // res.send();
     } catch (err) {
         console.log(err);
         res.status(500).json(err);

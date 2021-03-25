@@ -173,9 +173,9 @@ body {
     color: white;
   }
 
-  .star_rating input{
+  /* .star_rating input{
   display: none;  
-  }
+  } */
 
   .star_rating label{
     font-size: 20px;
