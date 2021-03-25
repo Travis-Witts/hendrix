@@ -4,6 +4,32 @@ const sequelize = require('sequelize')
 
 const withAuth = require('../utils/auth');
 
+router.get('/manageBusiness', async (req, res) => {
+    try {
+        // if (!req.session.logged_in) {
+        //     res.redirect('/login');
+        //     return;
+        // }
+        const dbProductData = await Business.findAll({
+            where: {
+                user_id: 1
+            }
+        });
+
+        let businesses = dbProductData.map((product) => product.get({ plain: true }));
+
+        res.render('manageBusiness', {
+
+            businesses,
+            loggedIn: req.session.loggedIn,
+
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
 
 router.get('/search/:term', async (req, res) => {
     try {
