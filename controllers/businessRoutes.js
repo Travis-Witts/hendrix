@@ -1,9 +1,34 @@
 const router = require('express').Router();
-const { Business, Reviews, User } = require('../../models');
+const { Business, Reviews, User } = require('../models');
 const sequelize = require('sequelize')
 
-const { Op } = sequelize;
-const withAuth = require('../../utils/auth');
+const withAuth = require('../utils/auth');
+
+router.get('/manageBusiness', async (req, res) => {
+    try {
+        // if (!req.session.logged_in) {
+        //     res.redirect('/login');
+        //     return;
+        // }
+        const dbProductData = await Business.findAll({
+            where: {
+                user_id: 1
+            }
+        });
+
+        let businesses = dbProductData.map((product) => product.get({ plain: true }));
+
+        res.render('manageBusiness', {
+
+            businesses,
+            loggedIn: req.session.loggedIn,
+
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
 
 
 router.get('/search/:term', async (req, res) => {
@@ -15,10 +40,7 @@ router.get('/search/:term', async (req, res) => {
         const dbBusinessData = await Business.findAll({
             limit: 10,
             where: {
-                name: {
-                    [Op.like]: "%" + req.params.term + "%"
-                }
-                // name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.params.term + '%')
+                name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.params.term + '%')
             },
             include: [
                 {
@@ -39,12 +61,13 @@ router.get('/search/:term', async (req, res) => {
             let totalRating = Math.round(total)
             business.totalRating = totalRating / reviews.length
         })
-
+        req.session.user_id = 100
         console.log(businesses)
         res.render('listbusiness', {
             businesses,
             loggedIn: req.session.loggedIn,
         });
+        console.log(req.session)
         // res.send();
     } catch (err) {
         console.log(err);

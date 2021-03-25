@@ -20,16 +20,14 @@ router.get('/', async (req, res) => {
         }
         const randomArr = []
 
-        for (i = 0; i < ArrLength ; i++) {
-                var unique = true;
-                index = Math.floor(Math.random() * products.length);
-                randomArr.push(products[index])
-                products = products.filter((val, i) => i!= index)
+        for (i = 0; i < ArrLength; i++) {
+            index = Math.floor(Math.random() * products.length);
+            randomArr.push(products[index])
+            products = products.filter((val, i) => i != index)
         }
         console.log(randomArr)
 
         res.render('homepage', {
-
             randomArr,
             loggedIn: req.session.loggedIn,
         });
@@ -39,10 +37,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-
 router.get('/login', (req, res) => {
-    // If a session exists, redirect the request to the homepage
-    if (req.session.loggedIn) {
+    if (req.session.logged_in) {
         res.redirect('/');
         return;
     }
@@ -50,12 +46,13 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-router.get('/register', (req, res) => {
+router.get('/signup', (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/');
         return;
     }
-    res.render('register');
+
+    res.render('signup');
 });
 
 module.exports = router;
