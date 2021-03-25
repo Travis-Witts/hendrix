@@ -1,16 +1,14 @@
 <h1>Login </h1>
-<form action="action_page.php" method="post">
+ <form class="login-form" method="post">
   <div class="container">
-    <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" />
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" />
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="name" id="username">
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" id="password">
     <button type="submit">Login</button>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label>
-<<<<<<< HEAD
   </div>
-=======
-  </div>
->>>>>>> 71a1a62e9d27f6c99fd3083dd4dbc9b0b1c3518a
+  </form>
+  <script src="js/login.js"></script>
