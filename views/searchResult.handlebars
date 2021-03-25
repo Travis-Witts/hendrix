@@ -1,0 +1,13 @@
+<h1 style="text-align: center;">Hendrix</h1>
+
+{{#each businesses as |business|}}
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title" id="{{business.business_id}}">{{business.name}}</h5>
+        <div>Rating: {{star_rating business.totalRating}}</div>
+        <div>{{business.imageUrl}}</div>
+        <p class="card-title" id="listDescription">{{business.description}}</p>
+        <button>VIEW</button>
+    </div>
+</div>
+{{/each}}
