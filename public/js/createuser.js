@@ -14,7 +14,7 @@ const createUser = async(event) =>{
     if (response.ok){
         document.location.replace('/');
     }else{
-        alert('Fail to create project');
+        alert('Fail to create user');
     }
 }
 
