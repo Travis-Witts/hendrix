@@ -43,4 +43,30 @@ router.delete('/:id', async (req, res) => {
 });
 
 
+router.put('/:id', async (req, res) => {
+    try {
+                // if (!req.session.loggedIn) {
+        //     res.redirect('/login')
+        //     return
+        // }
+        const updatedBusiness = await Business.update(
+        {
+            where: {
+                business_id: req.params.id,
+            },
+        },
+        {
+            name: req.body.name,
+            description: req.body.description,
+            image_url: req.body.image_url,
+            category: req.body.category
+        });
+        res.status(200).redirect(`/business/${req.params.id}`)
+    } catch (error) {
+        console.log(error);
+        res.status(404).json(error);
+    }
+})
+
+
 module.exports = router;
