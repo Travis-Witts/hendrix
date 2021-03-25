@@ -36,8 +36,12 @@ router.get('/search/:term', async (req, res) => {
             business.totalRating = totalRating / reviews.length
         })
 
-        console.log(businesses)
-        res.json(businesses)
+        // console.log(businesses)
+        // res.json(businesses)
+        res.render('listbusiness', {
+            businesses,
+            loggedIn: req.session.loggedIn,
+        })
 
     } catch (err) {
         console.log(err);
