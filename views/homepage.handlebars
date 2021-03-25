@@ -13,7 +13,7 @@
         <h3>Recommend Business</h3>
         <ul class="list-group">
             {{#each randomArr as |business| }}
-            <li class="list-group-item" id="{{business.business_id}}" type="button">{{business.name}}</li>
+            <a class="list-group-item" href="/business/{{business.business_id}}" type="button">{{business.name}}</a>
             {{/each}}
         </ul>
     </div>
