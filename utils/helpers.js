@@ -1,10 +1,9 @@
 module.exports = {
   star_rating: (rating) => {
-    let stars;
     let star = "⭐";
-    for (let i = 0; i < rating; i++) {
-      stars += star
+    for (let i = 0; i < rating-1; i++) {
+      star += "⭐"
     }
-    return stars
+    return star
   },
 };

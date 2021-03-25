@@ -36,6 +36,10 @@ Business.init(
           key: 'user_id',
         },
     },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   },
   {
     sequelize,
