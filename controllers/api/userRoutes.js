@@ -1,39 +1,13 @@
 const router = require('express').Router();
 const { User, Business, Reviews } = require('../../models');
 
-// endpoint /api/users/
 
-router.get('/manageBusiness/:id', async (req, res) => {
-    try {
-        // if (!req.session.logged_in) {
-        //     res.redirect('/login');
-        //     return;
-        // }
-        const dbProductData = await Business.findAll({
-            where: {
-                user_id: req.params.id
-            }
-        });
-
-        let businesses = dbProductData.map((product) => product.get({ plain: true }));
-
-        res.render('manageBusiness', {
-
-            businesses,
-            loggedIn: req.session.loggedIn,
-
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-});
-
-// CREATE new user
+// Signup
 router.post('/', async (req, res) => {
+    console.log(req.body);
     try {
         const dbUserData = await User.create({
-            username: req.body.username,
+            name: req.body.name,
             email: req.body.email,
             password: req.body.password,
         });
