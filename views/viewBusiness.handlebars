@@ -2,6 +2,7 @@
 <div class="container" style="margin-top: 5%;text-align: center;">
     <h1 id="business_name">{{business.name}}</h1>
     <p id="description">{{business.description}}</p>
+        <button href="/write_review">Leave a review</button>
     <h2 style="margin-top: 5%">Review</h2>
     <div class="card" style="width: 18rem;">
 
@@ -10,7 +11,7 @@
             <h5 class="card-title" id="userName">{{review.reviewer.name}}</h5>
             <h6 class="card-subtitle mb-2 text-muted" id="date">23/03/2021</h6>
             <p class="card-text" id="reviewContent">{{review.review}}</p>
-            <p>Star rating: {{star_ rating review.rating}}</p>
+            <p>Star rating: {{star_rating review.rating}}</p>
             <a href="#" class="card-link">edit</a>
             <a href="#" class="card-link">delete</a>
         </div>

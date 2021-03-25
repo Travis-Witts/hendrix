@@ -2,7 +2,7 @@ const createUser = async(event) =>{
     event.preventDefault();
 
     const title = document.querySelector('#reviewTitle').Value.trim();
-    const password = document.querySelector('#psw').value.trim();
+    const rating = document.querySelector('#psw').value.trim();
     const comment = document.querySelector('#comment').value.trim();
   
 
@@ -19,5 +19,9 @@ const createUser = async(event) =>{
     }
 }
 
+document.querySelector('.star_rating').addEventListener('click',(event)=>{
+    console.log(event.target);
+    console.log(event.currentTarget);
+})
 
 document.querySelector('.registerbtn').addEventListener('click', createUser);
