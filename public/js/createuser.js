@@ -1,22 +1,25 @@
-const createUser = async(event) =>{
+const createUser = async (event) => {
     event.preventDefault();
 
-    const email = document.querySelector('#email').Value.trim();
-    const password = document.querySelector('#psw').value.trim();
-   value.trim();
+    const username = document.querySelector('#username').value.trim();
+    const email = document.querySelector('#email').value.trim();
+    const password = document.querySelector('#password').value.trim();
 
-    const response = await fetch('/api/users/',{
-        method:'POST',
-        body: JSON.stringify({email,password}),
-        headers: { 'Content-Type': 'application/json'},
-    });
 
-    if (response.ok){
-        document.location.replace('/');
-    }else{
-        alert('Fail to create project');
+    if (username && email && password) {
+        const response = await fetch('/api/users/', {
+            method: 'POST',
+            body: JSON.stringify({ username, email, password }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (response.ok) {
+            document.location.replace('/');
+        } else {
+            alert('Failed to create user');
+        }
     }
-}
+};
 
 
 document.querySelector('.registerbtn').addEventListener('click', createUser);
