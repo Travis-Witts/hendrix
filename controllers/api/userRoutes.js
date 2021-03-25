@@ -4,6 +4,7 @@ const { User, Business, Reviews } = require('../../models');
 
 // Signup
 router.post('/', async (req, res) => {
+    console.log(req.body);
     try {
         const dbUserData = await User.create({
             name: req.body.name,
