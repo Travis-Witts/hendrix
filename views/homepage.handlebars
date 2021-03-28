@@ -11,7 +11,7 @@
 
     <div class="row" style="margin-top: 5%;">
         <h3>Recommend Business</h3>
-        <ul class="list-group">
+        <ul class="list-group" style="opacity:0.75;">
             {{#each randomArr as |business| }}
             <a class="list-group-item" href="/business/{{business.business_id}}" type="button">{{business.name}}</a>
             {{/each}}

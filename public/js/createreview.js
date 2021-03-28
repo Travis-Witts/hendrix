@@ -2,13 +2,13 @@ const createUser = async(event) =>{
     event.preventDefault();
 
     const title = document.querySelector('#reviewTitle').Value.trim();
-    const rating = document.querySelector('#psw').value.trim();
+    // const rating = document.querySelector('#psw').value.trim();
     const comment = document.querySelector('#comment').value.trim();
   
 
     const response = await fetch('/api/users/',{
         method:'POST',
-        body: JSON.stringify({title,password,comment}),
+        body: JSON.stringify({title,rating,comment}),
         headers: { 'Content-Type': 'application/json'},
     });
 
