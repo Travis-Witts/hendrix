@@ -54,4 +54,25 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
+// rendering chat room 
+router.get('/chatroom', async (req, res) => {
+    try {
+        const userData = await User.findOne({
+            where: {
+                user_id: 1,
+            }
+        });
+
+        let user = userData.get({ plain: true });
+
+        res.sendFile('C:/Users/MEDIA/documents/bootcamp/uadel-adel-fsf-pt-11-2020-u-c/week_15/02-Homework/review-web/views/chatroom.html', {
+            user,
+            loggedIn: req.session.loggedIn,
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
 module.exports = router;

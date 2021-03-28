@@ -4,13 +4,19 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
+const app = express();
+
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
+http.listen(3000, () => {
+  console.log('listening on *:3000');
+});
 
 const sequelize = require('./config/connection');
 
-
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-const app = express();
 const PORT = process.env.PORT || 3001;
 
 const hbs = exphbs.create({ helpers });
@@ -35,6 +41,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
+
+io.on('connection', (socket) => {
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);
+    console.log('message: ' + msg);
+  });
+});
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
