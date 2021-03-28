@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class Reviews extends Model {}
+class Reviews extends Model { }
 
 Reviews.init(
     {
@@ -24,17 +24,22 @@ Reviews.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-              model: 'user',
-              key: 'user_id',
+                model: 'user',
+                key: 'user_id',
             },
         },
         business_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-              model: 'business',
-              key: 'business_id',
+                model: 'business',
+                key: 'business_id',
             },
+        },
+        date_created: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
         },
     },
     {
