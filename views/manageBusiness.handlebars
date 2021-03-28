@@ -2,9 +2,13 @@
     <div class="row" style="margin-top: 5%;">
         <h2>Your Businesses</h2>
         <ul class="list-group">
+            {{#if businesses}}
             {{#each businesses as |business| }}
             <li class="list-group-item" id="{{business.business_id}}" type="button">{{business.name}}</li>
             {{/each}}
+            {{else}}
+            <h3>You don't have any businesses yet!</h3>
+            {{/if}}
         </ul>
 
         <div class="container" style="border-color: blue;">
