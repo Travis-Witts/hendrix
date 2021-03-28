@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Business, Reviews, User } = require('../models');
+const path = require('path');
 
 const withAuth = require('../utils/auth');
 
@@ -65,7 +66,7 @@ router.get('/chatroom', async (req, res) => {
 
         let user = userData.get({ plain: true });
 
-        res.sendFile('C:/Users/MEDIA/documents/bootcamp/uadel-adel-fsf-pt-11-2020-u-c/week_15/02-Homework/review-web/views/chatroom.html', {
+        res.sendFile(path.join(__dirname,'../views/chatroom.html'), {
             user,
             loggedIn: req.session.loggedIn,
         });

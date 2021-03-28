@@ -10,11 +10,10 @@ router.post("/", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-
+    req.session.user_id = dbUserData.user_id;
+    console.log(req.session.user_id)
     req.session.save(() => {
-      req.session.user_id = dbUserData.id;
       req.session.loggedIn = true;
-
       res.status(200).json(dbUserData);
     });
   } catch (err) {
@@ -46,7 +45,7 @@ router.post("/login", async (req, res) => {
         .json({ message: "Incorrect email or password. Please try again!" });
       return;
     }
-    req.session.user_id = dbUserData.user_id
+    req.session.user_id = dbUserData.user_id;
     req.session.save(() => {
       req.session.loggedIn = true;
     });
