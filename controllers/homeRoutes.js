@@ -25,7 +25,6 @@ router.get('/', async (req, res) => {
             randomArr.push(products[index])
             products = products.filter((val, i) => i != index)
         }
-        console.log(randomArr)
 
         res.render('homepage', {
             randomArr,
