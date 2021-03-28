@@ -84,7 +84,7 @@ router.get('/:id', withAuth, async (req, res) => {
                 {
                     model: Reviews,
                     required: true,
-                    attributes: ['review', 'user_id', 'rating', 'business_id'],
+                    attributes: ['review_id', 'review', 'user_id', 'rating', 'business_id'],
                     include: ['reviewer'],
                 },
                 'owner',
@@ -92,7 +92,7 @@ router.get('/:id', withAuth, async (req, res) => {
         });
 
         let business = dbBusinessData.get({ plain: true });
-
+        console.log(business)
         res.render('viewBusiness', {
             business,
             loggedIn: req.session.loggedIn,

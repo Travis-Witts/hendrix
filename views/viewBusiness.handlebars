@@ -9,14 +9,14 @@
         {{#each business.reviews as |review|}}
         <div class="card-body">
             <h5 class="card-title" id="userName">{{review.reviewer.name}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted" id="date">23/03/2021</h6>
+            <h6 class="card-subtitle mb-2 text-muted" id="date">{{review.createdAt}}</h6>
             <p class="card-text" id="reviewContent">{{review.review}}</p>
             <p>Star rating: {{star_rating review.rating}}</p>
-            <a href="#" class="card-link">edit</a>
-            <a href="#" class="card-link">delete</a>
+            <a class="deleteReview" id="{{review.review_id}}" href="" class="card-link">delete</a>
         </div>
         {{/each}}
 
     </div>
     <button id="chat"><a href="http://localhost:3000/chatroom">Chat Here</a></button>
 </div>
+<script type="text/javascript" src="/js/deletereview.js"></script>
