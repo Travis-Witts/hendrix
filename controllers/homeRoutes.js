@@ -3,12 +3,12 @@ const { Business, Reviews, User } = require('../models');
 
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
-        // if (!req.session.logged_in) {
-        //     res.redirect('/login');
-        //     return;
-        // }
+        if (!req.session.loggedIn) {
+            res.redirect('/login');
+            return;
+        }
         const dbProductData = await Business.findAll();
 
         let products = dbProductData.map((product) => product.get({ plain: true }));
