@@ -1,15 +1,13 @@
-const { delete } = require("../../controllers");
 
-const destory = async(event) =>{
+const destroy = async(event) =>{
     event.preventDefault();
 
-    const project = document.querySelector('#project_name').Value.trim();
-    const fund = document.querySelector('#needed_funding').value.trim();
-    const description = document.querySelector('#description').value.trim();
+    const reviewId = event.target.id;
+        
 
     const response = await fetch('/api/projects/',{
         method:'DELETE',
-        body: JSON.stringify({project,fund,description}),
+        body: JSON.stringify({reviewId}),
         headers: { 'Content-Type': 'application/json' },
     });
 
@@ -21,4 +19,4 @@ const destory = async(event) =>{
 }
 
 
-document.querySelector('#create').addEventListener('click', destory);
+document.querySelector('.deleteReview').addEventListener('click', destroy);
