@@ -19,9 +19,8 @@ const createUser = async(event) =>{
     }
 }
 
-document.querySelector('.star_rating').addEventListener('click',(event)=>{
+document.querySelector('form').addEventListener('submit',(event)=>{
     console.log(event.target);
     console.log(event.currentTarget);
 })
 
-document.querySelector('.registerbtn').addEventListener('click', createUser);
