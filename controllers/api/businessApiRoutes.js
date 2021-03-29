@@ -4,7 +4,9 @@ const sequelize = require('sequelize')
 
 const withAuth = require('../../utils/auth');
 
+
 router.post('/', withAuth,  async (req, res) => {
+
     try {
         if (!req.session.loggedIn) {
             res.redirect('/login')
@@ -13,9 +15,10 @@ router.post('/', withAuth,  async (req, res) => {
         const newReviewData = await Business.create({
             name: req.body.name,
             description: req.body.description,
-            category: req.body.category,
             user_id: req.session.user_id,
+            category: req.body.category,
         });
+        res.status(200).json();
     } catch (error) {
         console.log(error);
         res.status(404).json(error);
@@ -40,6 +43,5 @@ router.delete('/:id', withAuth, async (req, res) => {
         res.status(400).json(error);
     }
 });
-
 
 module.exports = router;
