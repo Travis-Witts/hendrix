@@ -6,7 +6,7 @@ const withAuth = require('../utils/auth');
 
 router.get('/manageBusiness', withAuth, async (req, res) => {
     try {
-        if (!req.session.logged_in) {
+        if (!req.session.loggedIn) {
             res.redirect('/login');
             return;
         }
@@ -38,6 +38,8 @@ router.get('/search/:term', withAuth, async (req, res) => {
             return
         }
         const dbBusinessData = await Business.findAll({
+            logging: console.log,
+            offset: 0,
             limit: 10,
             where: {
                 name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.params.term + '%')
@@ -45,7 +47,7 @@ router.get('/search/:term', withAuth, async (req, res) => {
             include: [
                 {
                     model: Reviews,
-                    required: true,
+                    required: false,
                     attributes: ['rating'],
                 },
             ],
@@ -62,12 +64,10 @@ router.get('/search/:term', withAuth, async (req, res) => {
             business.totalRating = totalRating / reviews.length
         })
         req.session.user_id = 100
-        console.log(businesses)
-        res.render('listbusiness', {
+        res.render('searchResult', {
             businesses,
             loggedIn: req.session.loggedIn,
         });
-        console.log(req.session)
         // res.send();
     } catch (err) {
         console.log(err);
@@ -81,6 +81,8 @@ router.get('/:id', withAuth, async (req, res) => {
             res.redirect('/login')
             return
         }
+        let businessOwner = false;
+
         const dbBusinessData = await Business.findOne({
             where: {
                 business_id: req.params.id
@@ -96,8 +98,12 @@ router.get('/:id', withAuth, async (req, res) => {
         });
 
         let business = dbBusinessData.get({ plain: true });
-        console.log(business)
+
+        if (req.session.user_id == business.user_id) {
+            businessOwner = true;
+        }
         res.render('viewBusiness', {
+            businessOwner,
             business,
             loggedIn: req.session.loggedIn,
         });
