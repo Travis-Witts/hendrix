@@ -196,6 +196,8 @@ body {
   
 }
 
+
+
 @media (max-width: 400px) {
   .side, .middle {
     width: 100%;
