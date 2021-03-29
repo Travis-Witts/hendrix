@@ -6,19 +6,20 @@ const withAuth = require('../utils/auth');
 
 router.get('/manageBusiness', async (req, res) => {
     try {
-        if (!req.session.loggedIn) {
-            res.redirect('/login');
-            return;
-        }
+        // if (!req.session.logged_in) {
+        //     res.redirect('/login');
+        //     return;
+        // }
         const dbProductData = await Business.findAll({
             where: {
-                user_id: req.session.user_id,
+                user_id: 1
             }
         });
 
         let businesses = dbProductData.map((product) => product.get({ plain: true }));
 
         res.render('manageBusiness', {
+
             businesses,
             loggedIn: req.session.loggedIn,
 
@@ -30,12 +31,12 @@ router.get('/manageBusiness', async (req, res) => {
 });
 
 
-router.get('/search/:term', withAuth, async (req, res) => {
+router.get('/search/:term', async (req, res) => {
     try {
-        if (!req.session.loggedIn) {
-            res.redirect('/login')
-            return
-        }
+        // if (!req.session.loggedIn) {
+        //     res.redirect('/login')
+        //     return
+        // }
         const dbBusinessData = await Business.findAll({
             limit: 10,
             where: {
@@ -60,22 +61,26 @@ router.get('/search/:term', withAuth, async (req, res) => {
             let totalRating = Math.round(total)
             business.totalRating = totalRating / reviews.length
         })
-        res.render('searchresult', {
+        req.session.user_id = 100
+        console.log(businesses)
+        res.render('listbusiness', {
             businesses,
             loggedIn: req.session.loggedIn,
         });
+        console.log(req.session)
+        // res.send();
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
     }
 })
 
-router.get('/:id', withAuth, async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
-        if (!req.session.loggedIn) {
-            res.redirect('/login')
-            return
-        }
+        // if (!req.session.loggedIn) {
+        //     res.redirect('/login')
+        //     return
+        // }
         const dbBusinessData = await Business.findOne({
             where: {
                 business_id: req.params.id
@@ -84,26 +89,17 @@ router.get('/:id', withAuth, async (req, res) => {
                 {
                     model: Reviews,
                     required: true,
-                    attributes: ['review_id', 'review', 'user_id', 'rating', 'business_id', 'date_created'],
+                    attributes: [ 'review_id', 'review', 'user_id', 'rating', 'business_id', 'date_created'],
                     include: ['reviewer'],
                 },
                 'owner',
             ],
         });
-        console.log(req.session);
-        const userdata = await User.findOne({
-            where: {
-                user_id: req.session.user_id
-            }
-        });
 
-        let user = userdata.get({ plain: true });
-        console.log(user);
         let business = dbBusinessData.get({ plain: true });
-        console.log(business)
+
         res.render('viewBusiness', {
             business,
-            user,
             loggedIn: req.session.loggedIn,
         });
 
@@ -111,6 +107,7 @@ router.get('/:id', withAuth, async (req, res) => {
         console.log(err);
         res.status(500).json(err);
     }
-})
+});
+
 
 module.exports = router;
