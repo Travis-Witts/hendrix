@@ -18,5 +18,26 @@
         {{/each}}
 
     </div>
-    <button id="chat"><a href="http://localhost:3000/chatroom">Chat Here</a></button>
+
+    <div class="centered-form__form">
+        <form action="http://localhost:3000/chatroom">
+            <div class="form-field">
+                <h3>Hi <span id="chatUsername">{{user.name}}</span>, would you like to have a chat with us?</h3>
+            </div>
+            {{!-- <div class="form-field">
+                <label>Display name</label>
+                <input type="text" name="name" id="chatUsername" autofocus>
+            </div> --}}
+
+            {{!-- <div class="form-field">
+                <label>Room name</label>
+                <input type="text" name="room" autofocus>
+            </div> --}}
+            <div class="form-field">
+                <button id="chat">Chat
+                    Here</button>
+            </div>
+        </form>
+    </div>
+
 </div>
