@@ -1,0 +1,13 @@
+{{!-- form to append chat room messages to --}}
+<div id="chat-container">
+    <ul id="message-container"></ul>
+    <form id="send-container">
+        <input type="text" autocomplete="off" id="message-input" name="message" key="{{user.name}}" />
+        <button type="submit" id="send-button">Send</button>
+    </form>
+</div>
+
+{{!-- connecting required scripts --}}
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/js/chatroom.js"></script>
+<script type="text/javascript" src="/js/libs/moment.js"></script>

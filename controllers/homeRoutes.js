@@ -60,16 +60,17 @@ router.get('/chatroom', async (req, res) => {
     try {
         const userData = await User.findOne({
             where: {
-                user_id: 1,
+                user_id: req.session.user_id,
             }
         });
 
         let user = userData.get({ plain: true });
 
-        res.sendFile(path.join(__dirname,'../views/chatroom.html'), {
+        res.render('chatroom', {
             user,
             loggedIn: req.session.loggedIn,
         });
+
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
