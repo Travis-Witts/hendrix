@@ -12,7 +12,7 @@ router.get('/manageBusiness', async (req, res) => {
         // }
         const dbProductData = await Business.findAll({
             where: {
-                user_id: 1
+                user_id: req.session.user_id
             }
         });
 
@@ -88,13 +88,13 @@ router.get('/:id', async (req, res) => {
             include: [
                 {
                     model: Reviews,
-                    attributes: [ 'review_id', 'review', 'user_id', 'rating', 'business_id', 'date_created'],
+                    attributes: ['review_id', 'review', 'user_id', 'rating', 'business_id', 'date_created'],
                     include: ['reviewer'],
                 },
                 'owner',
             ],
         });
-        
+
         let business = dbBusinessData.get({ plain: true });
         console.log(business)
         res.render('viewBusiness', {
