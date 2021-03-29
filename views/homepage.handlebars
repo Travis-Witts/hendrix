@@ -1,4 +1,5 @@
 <div class="container" style="margin-top: 5%;text-align: center;">
+    <div><img id="frontLogo" src="https://api.freelogodesign.org/files/12d3fe6a97424dd397f175ad3e6f39b8/thumb/logo_200x200.png?v=0" /></div>
     <h1 id="business_name">Search</h1>
 
     <div class="input-group mb-3">
@@ -11,11 +12,12 @@
 
     <div class="row" style="margin-top: 5%;">
         <h3>Recommend Business</h3>
-        <ul class="list-group" style="opacity:0.75;">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10"><ul class="list-group" style="opacity:0.5;">
             {{#each randomArr as |business| }}
             <a class="list-group-item" href="/business/{{business.business_id}}" type="button">{{business.name}}</a>
             {{/each}}
-        </ul>
+        </ul></div>
     </div>
 
 </div>

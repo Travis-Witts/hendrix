@@ -1,4 +1,6 @@
 <div class="container" style="margin-top: 5%;text-align: center;">
+    <div><img id="frontLogo"
+        src="https://api.freelogodesign.org/files/12d3fe6a97424dd397f175ad3e6f39b8/thumb/logo_200x200.png?v=0" /></div>
     <div class="row" style="margin-top: 5%;">
         <h2>Your Businesses</h2>
         <ul class="list-group">
@@ -6,9 +8,13 @@
             <li class="list-group-item" id="{{business.business_id}}" type="button">{{business.name}}</li>
             {{/each}}
         </ul>
+       
 
-        <div class="container" style="border-color: blue;">
-            <h4 style="margin-top: 10%;">Please complete the form if you wish to add more business</h4>
+        <div class="container" style="margin-top: 10%;">
+            <div class="row">
+            <h4 >Please complete the form if you wish to add more business</h4>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
             <form>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Business Name</label>
@@ -31,6 +37,8 @@
                 </div>
                 <button type="submit" class="btn btn-primary mb-2" style="margin-top: 2%;">Submit</button>
             </form>
+            </div>
         </div>
+    </div>
     </div>
 </div>
