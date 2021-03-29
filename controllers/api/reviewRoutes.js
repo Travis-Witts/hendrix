@@ -6,10 +6,6 @@ const withAuth = require('../../utils/auth');
 
 router.post('/:id', withAuth,  async (req, res) => {
     try {
-        if (!req.session.loggedIn) {
-            res.redirect('/login')
-            return
-        }
         const newReviewData = await Reviews.create({
             review: req.body.comment,
             rating: req.body.starRating,
@@ -26,10 +22,6 @@ router.post('/:id', withAuth,  async (req, res) => {
 
 router.delete('/:id', withAuth, async (req, res) => {
     try {
-        if (!req.session.loggedIn) {
-            res.redirect('/login')
-            return
-        }
         const deletedReview = await Reviews.destroy({
             where: {
                 review_id: req.params.id,

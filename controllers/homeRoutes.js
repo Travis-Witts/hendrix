@@ -6,10 +6,6 @@ const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
     try {
-        if (!req.session.loggedIn) {
-            res.redirect('/login');
-            return;
-        }
         const dbProductData = await Business.findAll();
 
         let products = dbProductData.map((product) => product.get({ plain: true }));

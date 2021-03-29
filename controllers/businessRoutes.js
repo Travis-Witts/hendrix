@@ -33,10 +33,6 @@ router.get('/manageBusiness', withAuth, async (req, res) => {
 
 router.get('/search/:term', withAuth, async (req, res) => {
     try {
-        if (!req.session.loggedIn) {
-            res.redirect('/login')
-            return
-        }
         const dbBusinessData = await Business.findAll({
             logging: console.log,
             offset: 0,
@@ -77,10 +73,6 @@ router.get('/search/:term', withAuth, async (req, res) => {
 
 router.get('/:id', withAuth, async (req, res) => {
     try {
-        if (!req.session.loggedIn) {
-            res.redirect('/login')
-            return
-        }
         let businessOwner = false;
 
         const dbBusinessData = await Business.findOne({

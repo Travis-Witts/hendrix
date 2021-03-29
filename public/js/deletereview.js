@@ -2,7 +2,6 @@ const destroy = async(event) =>{
     event.preventDefault();
     const review_id = event.target.id;
     const business_id = event.target.getAttribute('key');
-    console.log(business_id)
 
     const response = await fetch(`/api/review/${review_id}`,{
         method:'DELETE',
