@@ -1,27 +1,23 @@
+
 <div class="container">
     <div style="text-align: center;"><img id="frontLogo"
             src="https://api.freelogodesign.org/files/12d3fe6a97424dd397f175ad3e6f39b8/thumb/logo_200x200.png?v=0" />
     </div>
-    {{!-- <h1 style="text-align: center;">Hendrix</h1> --}}
-    <div class="container" style="margin-top: 5%;text-align: center;">
-        <h1 id="business_name">{{business.name}}</h1>
-        <p id="description">{{business.description}}</p>
-        <a href="#reviewForm" id="writeReview">Write Review</a>
-        <h2 style="margin-top: 5%">Review</h2>
-        <div class="card" style="width: 18rem;">
+<h1 style="text-align: center;">Hendrix</h1>
+<div class="container" style="margin-top: 5%;text-align: center;">
+    <h1 id="business_name">{{business.name}}</h1>
+    <p id="description">{{business.description}}</p>
+    <button href="/write_review">Leave a review</button>
+    <h2 style="margin-top: 5%">Review</h2>
+    <div class="card" style="width: 18rem;">
 
-            {{#each business.reviews as |review|}}
-            <div class="card-body">
-                <h5 class="card-title" id="userName">{{review.reviewer.name}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted" id="date">23/03/2021</h6>
-                <p class="card-text" id="reviewContent">{{review.review}}</p>
-                <p>Star rating: {{star_rating review.rating}}</p>
-                <a href="#" class="card-link">edit</a>
-                <a href="#" class="card-link">delete</a>
-            </div>
-            {{/each}}
-
-
+        {{#each business.reviews as |review|}}
+        <div class="card-body">
+            <h5 class="card-title" id="userName">{{review.reviewer.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted" id="date">{{format_date review.date_created}}</h6>
+            <p class="card-text" id="reviewContent">{{review.review}}</p>
+            <p>Star rating: {{star_rating review.rating}}</p>
+            <a href="" class="card-link" id="delete">delete</a>
         </div>
 
         <div class="container" style="margin-top: 15%;" id="reviewForm">
@@ -70,8 +66,13 @@
                     <button type="submit" href="./search.html" class="btn btn-primary"
                         style="margin-top: 3%;">Submit</button>
                     <script src="/js/createreview.js"></script>
-                    {{!-- <button id="chat">Chat Here</button> --}}
+    </div>
+    <button id="chat"><a href="http://localhost:3000/chatroom">Chat Here</a></button>
+</div>
                 </div>
             </div>
         </div>
     </div>
+
+
+

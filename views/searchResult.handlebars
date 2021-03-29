@@ -11,7 +11,8 @@
         <div>Rating: {{star_rating business.totalRating}}</div>
         <div>{{business.imageUrl}}</div>
         <p class="card-title" id="listDescription">{{business.description}}</p>
-        <button class="btn btn-info">VIEW</button>
+
+        <button><a href="/business/{{business.business_id}}">VIEW</a></button>
     </div>
 </div>
 {{/each}}

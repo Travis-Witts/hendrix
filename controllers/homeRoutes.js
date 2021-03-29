@@ -1,14 +1,15 @@
 const router = require('express').Router();
 const { Business, Reviews, User } = require('../models');
+const path = require('path');
 
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
-        // if (!req.session.logged_in) {
-        //     res.redirect('/login');
-        //     return;
-        // }
+        if (!req.session.loggedIn) {
+            res.redirect('/login');
+            return;
+        }
         const dbProductData = await Business.findAll();
 
         let products = dbProductData.map((product) => product.get({ plain: true }));
@@ -25,7 +26,6 @@ router.get('/', async (req, res) => {
             randomArr.push(products[index])
             products = products.filter((val, i) => i != index)
         }
-        console.log(randomArr)
 
         res.render('homepage', {
             randomArr,
@@ -53,6 +53,27 @@ router.get('/signup', (req, res) => {
     }
 
     res.render('signup');
+});
+
+// rendering chat room 
+router.get('/chatroom', async (req, res) => {
+    try {
+        const userData = await User.findOne({
+            where: {
+                user_id: 1,
+            }
+        });
+
+        let user = userData.get({ plain: true });
+
+        res.sendFile(path.join(__dirname,'../views/chatroom.html'), {
+            user,
+            loggedIn: req.session.loggedIn,
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;
