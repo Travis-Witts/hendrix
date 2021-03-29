@@ -8,6 +8,7 @@ const app = express();
 
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+const { generateMessage } = require('./utils/message');
 
 http.listen(3000, () => {
   console.log('listening on *:3000');
@@ -43,9 +44,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
-    console.log('message: ' + msg);
+
+  socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chatroom'));
+
+  socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
+
+  socket.on('createMessage', (msg, callback) => {
+    console.log("createMessage", msg);
+    io.emit('newMessage', generateMessage(msg.from, msg.text));
+    callback();
+  });
+
+  socket.on('disconnect', () => {
+    console.log("user has disconnected");
   });
 });
 

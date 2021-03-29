@@ -84,17 +84,26 @@ router.get('/:id', withAuth, async (req, res) => {
                 {
                     model: Reviews,
                     required: true,
-                    attributes: ['review_id', 'review', 'user_id', 'rating', 'business_id'],
+                    attributes: ['review_id', 'review', 'user_id', 'rating', 'business_id', 'date_created'],
                     include: ['reviewer'],
                 },
                 'owner',
             ],
         });
+        console.log(req.session);
+        const userdata = await User.findOne({
+            where: {
+                user_id: req.session.user_id
+            }
+        });
 
+        let user = userdata.get({ plain: true });
+        console.log(user);
         let business = dbBusinessData.get({ plain: true });
         console.log(business)
         res.render('viewBusiness', {
             business,
+            user,
             loggedIn: req.session.loggedIn,
         });
 
