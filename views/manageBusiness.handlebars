@@ -7,7 +7,7 @@
         <ul class="list-group">
             {{#if businesses}}
             {{#each businesses as |business| }}
-            <li class="list-group-item" id="{{business.business_id}}" type="button">{{business.name}}</li>
+            <a class="list-group-item" href="/business/{{business.business_id}}" type="button">{{business.name}}</a>
             {{/each}}
             {{else}}
             <h3>You don't have any businesses yet!</h3>
@@ -19,7 +19,7 @@
                 <h4 style="margin-top: 10%;">Please complete the form if you wish to add more business</h4>
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <form>
+                    <form id="newBusinessForm">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Business Name</label>
                             <input type="text" class="form-control" id="newBusinessName"
@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <label>Select for Business category</label>
-                            <select multiple class="form-control" id="catagory">
+                            <select multiple class="form-control" id="category">
                                 <option>Clothing</option>
                                 <option>Retail</option>
                                 <option>Entertainment</option>
@@ -46,3 +46,5 @@
         </div>
     </div>
 </div>
+
+<script src="/js/createBusiness.js"></script>
