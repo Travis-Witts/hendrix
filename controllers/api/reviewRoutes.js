@@ -35,6 +35,7 @@ router.delete('/:id', async (req, res) => {
                 review_id: req.params.id,
             },
         });
+        console.log(deletedReview);
         res.status(200).redirect('/')
     } catch (error) {
         console.log(error);

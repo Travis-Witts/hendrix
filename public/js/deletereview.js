@@ -1,20 +1,14 @@
 const destroy = async(event) =>{
     event.preventDefault();
+    const review_id = event.target.id;
+    const business_id = event.target.getAttribute('key');
+    console.log(business_id)
 
-    const reviewId = event.target.id;
-    console.log(reviewId)
-
-    const response = await fetch('/api/review/',{
+    const response = await fetch(`/api/review/${review_id}`,{
         method:'DELETE',
-        body: JSON.stringify({reviewId}),
         headers: { 'Content-Type': 'application/json' },
     });
-
-    if (response.ok){
-        document.location.replace('/');
-    }else{
-        alert('Failed to delete Review');
-    }
+    document.location.replace(`/business/${business_id}`);
 }
 
 

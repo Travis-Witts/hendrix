@@ -88,16 +88,15 @@ router.get('/:id', async (req, res) => {
             include: [
                 {
                     model: Reviews,
-                    required: true,
                     attributes: [ 'review_id', 'review', 'user_id', 'rating', 'business_id', 'date_created'],
                     include: ['reviewer'],
                 },
                 'owner',
             ],
         });
-
+        
         let business = dbBusinessData.get({ plain: true });
-
+        console.log(business)
         res.render('viewBusiness', {
             business,
             loggedIn: req.session.loggedIn,
