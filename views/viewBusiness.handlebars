@@ -20,8 +20,10 @@
                     <h6 class="card-subtitle mb-2 text-muted" id="date">{{format_date review.date_created}}</h6>
                     <p class="card-text" id="reviewContent">{{review.review}}</p>
                     <p>Star rating: {{star_rating review.rating}}</p>
+                    {{#if review.reviewOwner}}
                     <a href="" class="deleteReview" id="{{review.review_id}}" key="{{review.business_id}}"
                         class="card-link">delete</a>
+                        {{/if}}
                 </div>
             </div>
             {{/each}}

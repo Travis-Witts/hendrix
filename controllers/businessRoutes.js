@@ -91,6 +91,14 @@ router.get('/:id', withAuth, async (req, res) => {
 
         let business = dbBusinessData.get({ plain: true });
 
+        // console.log(business)
+
+        for (i = 0;i < business.reviews.length; i++) {
+            if (business.reviews[i].reviewer.user_id == req.session.user_id) {
+                business.reviews[i].reviewOwner = true;
+            }
+        }
+        console.log(business.reviews)
         if (req.session.user_id == business.user_id) {
             businessOwner = true;
         }
