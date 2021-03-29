@@ -4,12 +4,12 @@ const sequelize = require('sequelize')
 
 const withAuth = require('../utils/auth');
 
-router.get('/manageBusiness', async (req, res) => {
+router.get('/manageBusiness', withAuth, async (req, res) => {
     try {
-        // if (!req.session.logged_in) {
-        //     res.redirect('/login');
-        //     return;
-        // }
+        if (!req.session.logged_in) {
+            res.redirect('/login');
+            return;
+        }
         const dbProductData = await Business.findAll({
             where: {
                 user_id: 1
@@ -31,12 +31,12 @@ router.get('/manageBusiness', async (req, res) => {
 });
 
 
-router.get('/search/:term', async (req, res) => {
+router.get('/search/:term', withAuth, async (req, res) => {
     try {
-        // if (!req.session.loggedIn) {
-        //     res.redirect('/login')
-        //     return
-        // }
+        if (!req.session.loggedIn) {
+            res.redirect('/login')
+            return
+        }
         const dbBusinessData = await Business.findAll({
             limit: 10,
             where: {
@@ -75,12 +75,12 @@ router.get('/search/:term', async (req, res) => {
     }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
     try {
-        // if (!req.session.loggedIn) {
-        //     res.redirect('/login')
-        //     return
-        // }
+        if (!req.session.loggedIn) {
+            res.redirect('/login')
+            return
+        }
         const dbBusinessData = await Business.findOne({
             where: {
                 business_id: req.params.id

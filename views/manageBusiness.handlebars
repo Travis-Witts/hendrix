@@ -7,7 +7,7 @@
         <ul class="list-group">
             {{#if businesses}}
             {{#each businesses as |business| }}
-            <li class="list-group-item" id="{{business.business_id}}" type="button">{{business.name}}</li>
+            <a class="list-group-item" href="/business/{{business.business_id}}" type="button">{{business.name}}</a>
             {{/each}}
             {{else}}
             <h3>You don't have any businesses yet!</h3>

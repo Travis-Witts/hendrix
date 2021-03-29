@@ -1,11 +1,10 @@
 const createReview = async(event) =>{
     event.preventDefault();
-
-    const title = document.querySelector('#reviewTitle').Value;
-    const comment = document.querySelector('#comment').value;
-    const star = document.getElementsByTagName('input');
+    const businessId = event.target.id;
+    const comment = document.querySelector('#review').value;
+    const star = document.getElementsByName('rate');
     let starRating;
-    for (i = 0; i < star.length; i++) {
+    for (i = 0; i < 5; i++) {
         if (star[i].type = "radio") {
             if (star[i].checked) {
                 console.log(i);
@@ -13,10 +12,11 @@ const createReview = async(event) =>{
             }
         }
     }
+    console.log(starRating)
 
-    const response = await fetch('/api/users/',{
+    const response = await fetch(`/api/review/${businessId}`,{
         method:'POST',
-        body: JSON.stringify({title,starRating,comment}),
+        body: JSON.stringify({comment,starRating}),
         headers: { 'Content-Type': 'application/json'},
     });
 
@@ -27,4 +27,4 @@ const createReview = async(event) =>{
     }
 }
 
-document.querySelector('form').addEventListener('submit', createReview);
+document.querySelector('.formSub').addEventListener('submit', createReview);
