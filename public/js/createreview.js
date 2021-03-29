@@ -1,14 +1,22 @@
-const createUser = async(event) =>{
+const createReview = async(event) =>{
     event.preventDefault();
 
-    const title = document.querySelector('#reviewTitle').Value.trim();
-    const rating = document.querySelector('#psw').value.trim();
-    const comment = document.querySelector('#comment').value.trim();
-  
+    const title = document.querySelector('#reviewTitle').Value;
+    const comment = document.querySelector('#comment').value;
+    const star = document.getElementsByTagName('input');
+    let starRating;
+    for (i = 0; i < star.length; i++) {
+        if (star[i].type = "radio") {
+            if (star[i].checked) {
+                console.log(i);
+                starRating = star[i].id;
+            }
+        }
+    }
 
     const response = await fetch('/api/users/',{
         method:'POST',
-        body: JSON.stringify({title,password,comment}),
+        body: JSON.stringify({title,starRating,comment}),
         headers: { 'Content-Type': 'application/json'},
     });
 
@@ -19,9 +27,4 @@ const createUser = async(event) =>{
     }
 }
 
-document.querySelector('.star_rating').addEventListener('click',(event)=>{
-    console.log(event.target);
-    console.log(event.currentTarget);
-})
-
-document.querySelector('.registerbtn').addEventListener('click', createUser);
+document.querySelector('form').addEventListener('submit', createReview);
