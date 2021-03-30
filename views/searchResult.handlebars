@@ -1,7 +1,7 @@
 <h1 style="text-align: center;">Hendrix</h1>
-
+<div class="row">
 {{#each businesses as |business|}}
-<div class="card" style="width: 18rem;">
+<div class="card col-md-3" style="width: 18rem;">
     <div class="card-body">
         <h5 class="card-title" id="{{business.business_id}}">{{business.name}}</h5>
         <div>Rating: {{star_rating business.totalRating}}</div>
@@ -11,3 +11,4 @@
     </div>
 </div>
 {{/each}}
+</div>

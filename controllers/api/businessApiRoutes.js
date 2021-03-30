@@ -6,12 +6,7 @@ const withAuth = require('../../utils/auth');
 
 
 router.post('/', withAuth,  async (req, res) => {
-
     try {
-        if (!req.session.loggedIn) {
-            res.redirect('/login')
-            return
-        }
         const newReviewData = await Business.create({
             name: req.body.name,
             description: req.body.description,
@@ -28,10 +23,6 @@ router.post('/', withAuth,  async (req, res) => {
 
 router.delete('/:id', withAuth, async (req, res) => {
     try {
-        if (!req.session.loggedIn) {
-            res.redirect('/login')
-            return
-        }
         const deletedReview = await Business.destroy({
             where: {
                 business_id: req.params.id,
