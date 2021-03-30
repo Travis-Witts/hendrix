@@ -34,7 +34,6 @@ router.get('/manageBusiness', withAuth, async (req, res) => {
 router.get('/search/:term', withAuth, async (req, res) => {
     try {
         const dbBusinessData = await Business.findAll({
-            logging: console.log,
             offset: 0,
             limit: 10,
             where: {
@@ -64,7 +63,6 @@ router.get('/search/:term', withAuth, async (req, res) => {
             businesses,
             loggedIn: req.session.loggedIn,
         });
-        // res.send();
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -91,17 +89,16 @@ router.get('/:id', withAuth, async (req, res) => {
 
         let business = dbBusinessData.get({ plain: true });
 
-        // console.log(business)
-
         for (i = 0;i < business.reviews.length; i++) {
             if (business.reviews[i].reviewer.user_id == req.session.user_id) {
                 business.reviews[i].reviewOwner = true;
             }
         }
-        console.log(business.reviews)
+
         if (req.session.user_id == business.user_id) {
             businessOwner = true;
         }
+
         res.render('viewBusiness', {
             businessOwner,
             business,

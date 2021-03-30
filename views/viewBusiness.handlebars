@@ -3,9 +3,6 @@
             src="https://api.freelogodesign.org/files/12d3fe6a97424dd397f175ad3e6f39b8/thumb/logo_200x200.png?v=0" />
     </div>
     <div class="container" style="margin-top: 2%;text-align: center;">
-        {{#if businessOwner}}
-        <a href="" class="deleteBusiness" id="{{business.business_id}}">Delete Business</a>
-        {{/if}}
         <h1 id="business_name">{{business.name}}</h1>
         <h2>Category: {{business.category}}</h2>
         <p id="description">{{business.description}}</p>
@@ -23,7 +20,7 @@
                     {{#if review.reviewOwner}}
                     <a href="" class="deleteReview" id="{{review.review_id}}" key="{{review.business_id}}"
                         class="card-link">delete</a>
-                        {{/if}}
+                    {{/if}}
                 </div>
             </div>
             {{/each}}
@@ -42,6 +39,7 @@
             </div>
         </form>
     </div>
+    {{#unless businessOwner}}
     <div class="container" style="margin-top: 5%; margin-bottom: 5%" id="reviewForm">
         <div class="row">
             <div class="col-md-2"></div>
@@ -77,8 +75,14 @@
             </div>
         </div>
     </div>
+    {{else}}
+    <br>
+    <hr>
+    <a href="" style="padding-bottom: 15px;" class="deleteBusiness" id="{{business.business_id}}">Delete Business</a>
+    <br>
+    {{/unless}}
 </div>
-</div>
+
 
 {{#if business.reviews}}
 <script type="text/javascript" src="/js/deletereview.js"></script>
@@ -86,5 +90,6 @@
 
 {{#if businessOwner}}
 <script type="text/javascript" src="/js/deletebusiness.js"></script>
-{{/if}}
+{{else}}
 <script type="text/javascript" src="/js/createreview.js"></script>
+{{/if}}
