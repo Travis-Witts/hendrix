@@ -1,5 +1,4 @@
-# review-web
-# Employee_Tracker
+# Hendrix
 ![license](https://img.shields.io/badge/License-MIT-yellow.svg)
 ## Table of Content
 * [Project Links](#Project-Links)
@@ -24,10 +23,11 @@
 ![View reviews](./assets/businessview.png)
 
 ## Project Objective
-Working with a team of developers, we set out to create a an application incorporating a MVC and a mySQL server.
+Working with a team of developers, we set out to create an application incorporating a MVC and a mySQL server.
 The main purpose of this application is to provide a platform for businesses to not only promote their pages but for consumers to voice their opinions of their service.
 The website allows business owners and consumers to create accounts and freely post reviews.
-Design process
+
+Design process:
 -      Brainstorming an idea
 -      Designing database models
 -      Designing page format
